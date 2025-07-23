@@ -58,7 +58,11 @@ const Sidebar = () => {
             className="flex items-center justify-between px-4 py-2 text-white font-semibold hover:opacity-90 w-full focus:outline-none"
           >
             <span>Management</span>
-            {managementOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+            {managementOpen ? (
+              <ChevronUp size={18} />
+            ) : (
+              <ChevronDown size={18} />
+            )}
           </button>
 
           {managementOpen && (
@@ -75,28 +79,52 @@ const Sidebar = () => {
             </div>
           )}
 
-          <NavLink to="/sessions" className={normalClass}>
+          <NavLink
+            to="/sessions"
+            className={({ isActive }) => (isActive ? activeClass : normalClass)}
+          >
             Sessions
           </NavLink>
-          <NavLink to="/feedback" className={normalClass}>
+          <NavLink
+            to="/feedback"
+            className={({ isActive }) => (isActive ? activeClass : normalClass)}
+          >
             Feedback
           </NavLink>
-          <NavLink to="/wallet" className={normalClass}>
+          <NavLink
+            to="/wallet"
+            className={({ isActive }) => (isActive ? activeClass : normalClass)}
+          >
             Wallet
-          </NavLink>  
-          <NavLink to="/availability" className={normalClass}>
+          </NavLink>
+          <NavLink
+            to="/availability"
+            className={({ isActive }) => (isActive ? activeClass : normalClass)}
+          >
             Availability
           </NavLink>
-          <NavLink to="/security" className={normalClass}>
+          <NavLink
+            to="/security"
+            className={({ isActive }) => (isActive ? activeClass : normalClass)}
+          >
             Security
           </NavLink>
-          <NavLink to="/admin" className={normalClass}>
+          <NavLink
+            to="/admin"
+            className={({ isActive }) => (isActive ? activeClass : normalClass)}
+          >
             Admin
           </NavLink>
-          <NavLink to="/controls" className={normalClass}>
+          <NavLink
+            to="/controls"
+            className={({ isActive }) => (isActive ? activeClass : normalClass)}
+          >
             Controls
           </NavLink>
-          <NavLink to="/fq" className={normalClass}>
+          <NavLink
+            to="/fq"
+            className={({ isActive }) => (isActive ? activeClass : normalClass)}
+          >
             F&Q
           </NavLink>
         </nav>
