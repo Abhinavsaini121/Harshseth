@@ -17,17 +17,24 @@ const Dashboard = () => {
   }, [navigation, token]);
 
   return (
-    <div className="flex h-screen bg-gray-100 text-gray-800">
-      <Sidebar />
+ <div className="flex h-screen">
+  {/* Sidebar fixed at left, full height */}
+  <div className="w-[250px] flex-shrink-0 z-10">
+    <Sidebar />
+  </div>
 
-      <div className="flex-1 flex flex-col">
-        <Header />
-      
-           
-          {/* Page Outlet */}
-          <Outlet />  
-      </div>
-    </div>
+  {/* Right side content (header + main) */}
+  <div className="flex flex-col flex-1">
+    {/* Header stays at top */}
+    <Header />
+
+    {/* Main Content below header */}
+    <main className="flex-1 overflow-y-auto p-4 mt-16">
+      <Outlet />
+    </main>
+  </div>
+</div>
+
   );
 };
 

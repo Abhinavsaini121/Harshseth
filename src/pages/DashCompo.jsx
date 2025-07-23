@@ -1,84 +1,159 @@
-// src/pages/Dashboard.jsx
-import React, { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
-import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
+  Cell,
+} from "recharts";
 
 export default function DashCompo() {
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28EFF', '#FF6384'];
 
-  //     const navigation = useNavigate();
-  // const token = localStorage.getItem("token");
-
-  // useEffect(() => {
-  //   if (!token) {
-  //     navigation("/login");
-  //   }
-  // }, [navigation, token]);
-
-  // Sample data
-  const data = [
-    { name: 'Orders', value: 400 },
-    { name: 'Users', value: 300 },
-    { name: 'Products', value: 300 },
-    { name: 'Returns', value: 100 },
+  // Total sessions data
+  const sessionsData = [
+    { period: "Daily", sessions: 35 },
+    { period: "Weekly", sessions: 200 },
+    { period: "Monthly", sessions: 780 },
   ];
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  // Active users
+  const activeUsers = [
+    { name: "Therapists", value: 12 },
+    { name: "Listeners", value: 25 },
+    { name: "Clients", value: 110 },
+  ];
 
-  const barData = [
-    { name: 'Mon', logins: 30 },
-    { name: 'Tue', logins: 45 },
-    { name: 'Wed', logins: 20 },
-    { name: 'Thu', logins: 60 },
-    { name: 'Fri', logins: 75 },
-    { name: 'Sat', logins: 50 },
-    { name: 'Sun', logins: 40 },
-  ];  
+  // Upcoming Sessions
+  const upcomingSessions = [
+    { label: "Today", count: 8 },
+    { label: "Tomorrow", count: 14 },
+  ];
+
+  // Missed / Cancelled
+  const missedCancelled = [
+    { label: "Missed", count: 3 },
+    { label: "Cancelled", count: 4 },
+  ];
+
+  // Inactive Users
+  const inactiveUsers = [
+    { days: "7 days", count: 5 },
+    { days: "14 days", count: 12 },
+    { days: "30 days", count: 20 },
+  ];
+
+  // Ratings
+  const avgRating = 4.3;
+  const ratingsBreakdown = [
+    { name: "Therapists", value: 4.5 },
+    { name: "Listeners", value: 4.1 },
+  ];
 
   return (
-      <main className="flex-1 p-6 overflow-y-auto bg-white shadow-inner">
+    <div className="p-6 bg-white">
+      <h1 className="text-2xl font-bold mb-6">Dashboard Overview</h1>
+      
+      {/* Total Sessions */}
+      <div className="bg-gray-50 p-4 rounded-xl shadow mb-6">
+        <h2 className="text-lg font-semibold mb-2">Total Sessions</h2>
+        <ResponsiveContainer width="100%" height={250}>
+          <BarChart data={sessionsData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="period" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="sessions" fill="#8884d8" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
 
-          {/* Charts Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            <div className="bg-gray-50 p-4 rounded-xl shadow">
-              <h2 className="text-lg font-semibold mb-2">Activity Overview</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={barData}>
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="logins" fill="#8884d8" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
+      {/* Active Users */}
+      <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div className="bg-gray-50 p-4 rounded-xl shadow">
+          <h2 className="text-lg font-semibold mb-2">Active Users</h2>
+          <ResponsiveContainer width="100%" height={250}>
+            <PieChart>
+              <Pie data={activeUsers} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
+                {activeUsers.map((entry, index) => (
+                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
 
-            <div className="bg-gray-50 p-4 rounded-xl shadow">
-              <h2 className="text-lg font-semibold mb-2">System summary</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={data}
-                    dataKey="value"
-                    nameKey="name"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={100}
-                    label
-                  >
-                    {data.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-            
-          </div>
+        {/* Upcoming Sessions */}
+        <div className="bg-gray-50 p-4 rounded-xl shadow">
+          <h2 className="text-lg font-semibold mb-2">Upcoming Sessions</h2>
+          <ul className="space-y-2 text-base">
+            {upcomingSessions.map((item, index) => (
+              <li key={index} className="flex justify-between">
+                <span>{item.label}</span>
+                <span className="font-medium">{item.count}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
 
-        </main>
+      {/* Missed + Inactive */}
+      <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div className="bg-gray-50 p-4 rounded-xl shadow">
+          <h2 className="text-lg font-semibold mb-2">Missed / Cancelled Sessions</h2>
+          <ul className="space-y-2 text-base">
+            {missedCancelled.map((item, index) => (
+              <li key={index} className="flex justify-between">
+                <span>{item.label}</span>
+                <span className="font-medium">{item.count}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-  )
+        <div className="bg-gray-50 p-4 rounded-xl shadow">
+          <h2 className="text-lg font-semibold mb-2">Inactive Users</h2>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={inactiveUsers}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="days" />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="count" stroke="#FF8042" strokeWidth={2} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Sessions Pending Notes + Ratings */}
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="bg-gray-50 p-4 rounded-xl shadow">
+          <h2 className="text-lg font-semibold mb-2">Sessions Pending Notes</h2>
+          <p className="text-xl font-bold">7</p>
+        </div>
+
+        <div className="bg-gray-50 p-4 rounded-xl shadow">
+          <h2 className="text-lg font-semibold mb-2">Ratings Overview</h2>
+          <p className="text-sm mb-1">Average Satisfaction Score:</p>
+          <p className="text-2xl font-bold mb-3">{avgRating}</p>
+          <ul className="space-y-1 text-base">
+            {ratingsBreakdown.map((item, index) => (
+              <li key={index} className="flex justify-between">
+                <span>{item.name}</span>
+                <span>{item.value}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
 }
