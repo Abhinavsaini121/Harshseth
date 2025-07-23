@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo.png";
+// import logo from "../assets/logo.png";
 import { ChevronDown, ChevronUp, Menu } from "lucide-react";
 
 const Sidebar = () => {
@@ -31,17 +31,17 @@ const Sidebar = () => {
       <aside
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } md:block fixed top-0 left-0 h-full w-64 bg-[#0E9981] px-4 py-6 text-white z-10 pt-20 transition-all duration-300`}
+        } md:block fixed top-0 left-0 h-full w-64 bg-[#0E9981] px-4 py-6 text-white z-1 pt-20 transition-all duration-300`}
       >
         {/* Logo */}
-        <div className="flex items-center mb-10 space-x-3 px-2">
+        {/* <div className="flex items-center mb-10 space-x-3 px-2">
           <img
             src={logo}
             alt="Ventoutt Logo"
             className="h-10 w-10 rounded-full"
           />
           <span className="text-2xl font-bold">Ventoutt</span>
-        </div>
+        </div> */}
 
         {/* Navigation Links */}
         <nav className="flex flex-col space-y-2">
