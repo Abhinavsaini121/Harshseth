@@ -11,9 +11,9 @@ import Clients from "./pages/Management/Clients/Clients";
 import Security from "./pages/Security/Security";
 import Wallet from "./pages/Wallet/Wallet";
 import Sessions from "./pages/Sessions/Sessions";
-import Controls from "./pages/Controls/Controls";
 import Availability from "./pages/Availability/Availability";
 import Faq from "./pages/FAQ/Faq";
+
 import Feedback from "./pages/Feedback/Feedback";
 import Admin from "./pages/Admin/Admin";
 
@@ -34,7 +34,6 @@ function App() {
           <Route path="security" element={<Security />} />
           <Route path="wallet" element={<Wallet />} />
           <Route path="sessions" element={<Sessions />} />
-          <Route path="controls" element={<Controls />} />
           <Route path="availability" element={<Availability />} />
           <Route path="faq" element={<Faq />} />
           <Route path="Feedback" element={<Feedback />} />

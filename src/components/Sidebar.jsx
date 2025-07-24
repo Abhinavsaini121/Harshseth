@@ -115,14 +115,9 @@ const Sidebar = () => {
           >
             Admin
           </NavLink>
+
           <NavLink
-            to="/controls"
-            className={({ isActive }) => (isActive ? activeClass : normalClass)}
-          >
-            Controls
-          </NavLink>
-          <NavLink
-            to="/fq"
+            to="/faq"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
           >
             F&Q
