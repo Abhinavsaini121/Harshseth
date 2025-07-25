@@ -14,7 +14,7 @@ const Wallet = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Wallet & Payments</h2>
+      <h2 className="text-2xl font-semibold mb-6">Wallet & Payments</h2>
 
       {/* User Transactions */}
       <div className="mb-8">
