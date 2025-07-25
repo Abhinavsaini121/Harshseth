@@ -85,12 +85,12 @@ const Sidebar = () => {
           >
             Sessions
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/feedback"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
           >
             Feedback
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/wallet"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
