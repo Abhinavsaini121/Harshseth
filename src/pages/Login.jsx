@@ -1,35 +1,72 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
+import lady from "../assets/lady.png";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // 👉 Perform actual login validation/API call here
-    // If login is successful:
-    navigate('/dashboard');
+    // 👉 Here you can add actual API/auth logic
+    navigate("/dashboard"); // ✅ Navigate to dashboard after successful login
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96">
-        <h2 className="text-2xl font-semibold mb-6 text-center">Login to Ventoutt</h2>
-        <input
-          type="text"
-          placeholder="Email"
-          className="w-full p-2 mb-4 border rounded"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 mb-6 border rounded"
-        />
-        <button
-          onClick={handleLogin}
-          className="w-full bg-[#0E9981] text-white py-2 rounded hover:bg-[#0c826f] transition"
-        >
-          Login
-        </button>
+    <div className="min-h-screen flex items-center justify-center bg-[#08998D] px-4">
+      <div className="bg-white w-full max-w-4xl rounded-xl shadow-lg flex overflow-hidden relative">
+        {/* Left Side: Form */}
+        <div className="w-full md:w-2/3 p-8 md:p-10">
+          {/* Logo and Title */}
+          <div className="flex items-center space-x-3 mb-6">
+            <img src={logo} alt="Ventoutt Logo" className="w-10 h-10 rounded-full" />
+            <h1 className="text-2xl font-bold text-[#08998D]">Ventoutt</h1>
+          </div>
+
+          <h2 className="text-xl font-semibold mb-6 text-gray-800">Log In</h2>
+
+          {/* Email Input */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input
+              type="email"
+              placeholder="Enter Your Email"
+              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#08998D]"
+            />
+          </div>
+
+          {/* Password Input */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#08998D]"
+            />
+          </div>
+
+          {/* Login Button */}
+          <button
+            onClick={handleLogin}
+            className="bg-black text-white w-full py-2 rounded hover:bg-gray-800 transition"
+          >
+            Log In
+          </button>
+
+          {/* Footer Links */}
+          <div className="text-sm text-center mt-4 text-gray-600">
+            <p className="hover:underline cursor-pointer mb-1">Forgot username or password?</p>
+            <p className="hover:underline cursor-pointer">Create new account</p>
+          </div>
+        </div>
+
+        {/* Right Side: Image */}
+        <div className="hidden md:block w-1/3 bg-transparent relative">
+          <img
+            src={lady}
+            alt="lady"
+            className="absolute bottom-0 right-0 h-[90%] object-contain"
+          />
+        </div>
       </div>
     </div>
   );
