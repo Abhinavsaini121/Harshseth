@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const BASE_URL = "https://your-domain.com"; // 🔁 Replace with your actual API base URL
+const BASE_URL = "https://server1.pearl-developer.com/harshet/public/api/admin";
 
 const Faq = () => {
   const [faqs, setFaqs] = useState([]);
   const [newFaq, setNewFaq] = useState({ question: "", answer: "" });
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentEdit, setCurrentEdit] = useState({ id: "", question: "", answer: "" });
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
-  // Load FAQs
   const fetchFaqs = async () => {
     try {
       const res = await axios.get(`${BASE_URL}/get-faqs`);
-      setFaqs(res.data);
+      setFaqs(res.data.data);
     } catch (err) {
       console.error("Failed to fetch FAQs:", err);
     }
@@ -23,41 +25,56 @@ const Faq = () => {
     fetchFaqs();
   }, []);
 
-  // Add FAQ
   const handleAddFaq = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/add-faqs`, newFaq);
-      setFaqs([...faqs, res.data]);
+      const newItem = res.data.data;
+      setFaqs([...faqs, newItem]);
       setNewFaq({ question: "", answer: "" });
+      toast.success("FAQ added successfully!");
     } catch (err) {
       console.error("Error adding FAQ:", err);
+      toast.error("Failed to add FAQ.");
     }
   };
 
-  // Delete FAQ
-  const handleDeleteFaq = async (id) => {
+  const handleDeleteFaq = async () => {
+    if (!confirmDeleteId) return;
     try {
-      await axios.delete(`${BASE_URL}/delete-faqs`, { data: { id } });
-      setFaqs(faqs.filter((faq) => faq.id !== id));
+      const res = await axios.delete(`${BASE_URL}/delete-faqs/${confirmDeleteId}`);
+      const msg = res?.data?.message;
+      if (msg === "FAQ already deleted or not found") {
+        toast.warn("FAQ already deleted or not found.");
+      } else {
+        setFaqs(faqs.filter((faq) => faq.id !== confirmDeleteId));
+        toast.success("FAQ deleted successfully!");
+      }
     } catch (err) {
       console.error("Error deleting FAQ:", err);
+      toast.error("Failed to delete FAQ.");
+    } finally {
+      setConfirmDeleteId(null);
     }
   };
 
-  // Open Edit Modal
   const openEditModal = (faq) => {
     setCurrentEdit(faq);
     setEditModalOpen(true);
   };
 
-  // Update FAQ
   const handleUpdateFaq = async () => {
     try {
-      const res = await axios.post(`${BASE_URL}/edit-faqs`, currentEdit);
-      setFaqs(faqs.map((faq) => (faq.id === currentEdit.id ? res.data : faq)));
+      const res = await axios.post(`${BASE_URL}/edit-faqs/${currentEdit.id}`, {
+        question: currentEdit.question,
+        answer: currentEdit.answer,
+      });
+      const updated = res.data.data;
+      setFaqs(faqs.map((faq) => (faq.id === updated.id ? updated : faq)));
       setEditModalOpen(false);
+      toast.success("FAQ updated successfully!");
     } catch (err) {
       console.error("Error updating FAQ:", err);
+      toast.error("Failed to update FAQ.");
     }
   };
 
@@ -105,7 +122,7 @@ const Faq = () => {
                   Update
                 </button>
                 <button
-                  onClick={() => handleDeleteFaq(faq.id)}
+                  onClick={() => setConfirmDeleteId(faq.id)}
                   className="bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200"
                 >
                   Delete
@@ -118,7 +135,7 @@ const Faq = () => {
 
       {/* Edit Modal */}
       {editModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-10 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg w-full max-w-md border shadow space-y-4">
             <h2 className="text-xl font-semibold">Edit FAQ</h2>
             <input
@@ -146,6 +163,33 @@ const Faq = () => {
           </div>
         </div>
       )}
+
+      {/* Confirm Delete Popup */}
+      {confirmDeleteId && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg w-full max-w-sm border shadow space-y-4">
+            <h2 className="text-lg font-semibold text-gray-800">Confirm Delete</h2>
+            <p className="text-gray-600">Are you sure you want to delete this FAQ?</p>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setConfirmDeleteId(null)}
+                className="px-4 py-2 bg-gray-100 rounded"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeleteFaq}
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Toast */}
+      <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} />
     </div>
   );
 };
