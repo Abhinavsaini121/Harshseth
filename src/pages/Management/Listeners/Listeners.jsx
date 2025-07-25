@@ -12,7 +12,6 @@ const mockListeners = [
     lastLogin: "2025-07-22 09:45 AM",
     sessionHistory: 54,
     avgDuration: "42 min",
-    feedback: "Rated 4.5/5 across 120 reviews",
     slots: ["Mon 2–4 PM", "Wed 10–12 AM", "Fri 5–7 PM"],
   },
   {
@@ -23,7 +22,6 @@ const mockListeners = [
     lastLogin: "2025-07-20 06:10 PM",
     sessionHistory: 21,
     avgDuration: "36 min",
-    feedback: "Rated 4.1/5 across 40 reviews",
     slots: ["Tue 11–1 PM", "Thu 4–6 PM"],
   },
 ];
@@ -89,7 +87,6 @@ const Listeners = () => {
                 <p className="text-gray-500 text-sm">Last Login: {listener.lastLogin}</p>
                 <p className="text-gray-500 text-sm">Sessions: {listener.sessionHistory}</p>
                 <p className="text-gray-500 text-sm">Avg. Duration: {listener.avgDuration}</p>
-                <p className="text-gray-500 text-sm">Feedback: {listener.feedback}</p>
                 <p className="text-gray-500 text-sm mt-1">
                   <span className="font-semibold text-gray-600">Availability:</span>{" "}
                   {listener.slots.join(", ")}

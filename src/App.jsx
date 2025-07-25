@@ -14,7 +14,7 @@ import Sessions from "./pages/Sessions/Sessions";
 import Availability from "./pages/Availability/Availability";
 import Faq from "./pages/FAQ/Faq";
 
-import Feedback from "./pages/Feedback/Feedback";
+// import Feedback from "./pages/Feedback/Feedback";
 import Admin from "./pages/Admin/Admin";
 
 // Toast
@@ -36,7 +36,7 @@ function App() {
           <Route path="sessions" element={<Sessions />} />
           <Route path="availability" element={<Availability />} />
           <Route path="faq" element={<Faq />} />
-          <Route path="Feedback" element={<Feedback />} />
+          {/* <Route path="Feedback" element={<Feedback />} /> */}
           <Route path="Admin" element={<Admin />} />
         </Route>
       </Routes>

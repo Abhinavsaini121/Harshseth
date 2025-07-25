@@ -52,7 +52,7 @@ const Sessions = () => {
 
   return (
     <div className="p-6 bg-[#F5F7FA] min-h-screen text-gray-800">
-      <h2 className="text-xl font-medium mb-4">Session Management</h2>
+      <h2 className="text-2xl font-semibold mb-6">Session Management</h2>
 
       {/* Filter Buttons */}
       <div className="mb-5 flex gap-3 flex-wrap">
