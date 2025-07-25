@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Layout Page
 import Dashboard from "./pages/Dashboard";
 
-// Child Pages
+// Pages
 import DashCompo from "./pages/DashCompo";
 import Therapists from "./pages/Management/Therapists/Therapists";
 import Listeners from "./pages/Management/Listeners/Listeners";
@@ -13,8 +13,7 @@ import Wallet from "./pages/Wallet/Wallet";
 import Sessions from "./pages/Sessions/Sessions";
 import Availability from "./pages/Availability/Availability";
 import Faq from "./pages/FAQ/Faq";
-
-// import Feedback from "./pages/Feedback/Feedback";
+import Login from "./pages/Login";
 import Admin from "./pages/Admin/Admin";
 
 // Toast
@@ -25,9 +24,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard />}>
+        {/* Login Page */}
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+
+        {/* Dashboard Layout with nested routes */}
+        <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<DashCompo />} />
-          <Route path="dashboard" element={<DashCompo />} />
           <Route path="therapists" element={<Therapists />} />
           <Route path="listeners" element={<Listeners />} />
           <Route path="clients" element={<Clients />} />
@@ -36,10 +39,10 @@ function App() {
           <Route path="sessions" element={<Sessions />} />
           <Route path="availability" element={<Availability />} />
           <Route path="faq" element={<Faq />} />
-          {/* <Route path="Feedback" element={<Feedback />} /> */}
-          <Route path="Admin" element={<Admin />} />
+          <Route path="admin" element={<Admin />} />
         </Route>
       </Routes>
+
       <ToastContainer />
     </Router>
   );
