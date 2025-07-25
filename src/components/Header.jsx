@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CalendarDays, Bell, User } from "lucide-react";
+import axios from "axios";
 import logo from "../assets/logo.png";
 
 const Header = () => {
@@ -32,8 +33,30 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLogout = () => {
-    navigate("/login");
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(
+        "https://server1.pearl-developer.com/harshet/public/api/admin/admin-logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.message === "Admin logged out successfully") {
+        localStorage.removeItem("token");
+        alert("Logout successful!");
+        navigate("/login");
+      } else {
+        alert("Logout failed!");
+      }
+    } catch (error) {
+      alert("Logout error: " + (error.response?.data?.message || "Server error"));
+    }
   };
 
   return (
@@ -68,7 +91,7 @@ const Header = () => {
                 className="w-full mb-3 rounded px-2 py-1 text-gray-700 shadow-inner border"
               />
 
-              {/* Slot List (fake data example) */}
+              {/* Slot List */}
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {[
                   { time: "10:00 AM", status: "available" },
@@ -109,7 +132,6 @@ const Header = () => {
         </div>
 
         {/* Notifications Dropdown */}
-        {/* Notifications Dropdown */}
         <div ref={notificationRef} className="relative">
           <div
             className="bg-gray-100 p-2 rounded-full cursor-pointer hover:opacity-80 transition"
@@ -120,12 +142,10 @@ const Header = () => {
 
           {showNotifications && (
             <div className="absolute right-0 mt-3 w-96 bg-white rounded-xl shadow-xl z-50 overflow-hidden">
-              {/* Header */}
               <div className="px-4 py-3 bg-[#f0fdfa] text-[#0E9981] font-semibold text-sm border-b">
                 🔔 Notifications & Nudges
               </div>
 
-              {/* Filters */}
               <div className="px-4 py-3 space-y-3 border-b bg-gray-50">
                 <div className="grid grid-cols-2 gap-3">
                   <select className="text-sm border rounded px-3 py-2 focus:outline-none focus:ring-1 ring-[#0E9981]">
@@ -143,7 +163,6 @@ const Header = () => {
                 </div>
               </div>
 
-              {/* Notification Log */}
               <div className="max-h-52 overflow-y-auto text-sm divide-y">
                 <div className="px-4 py-3 hover:bg-gray-50">
                   📩 <strong>Reminder sent</strong> to Therapist Anjali
@@ -158,7 +177,6 @@ const Header = () => {
                 </div>
               </div>
 
-              {/* Broadcast Message */}
               <div className="border-t px-4 py-3 bg-white">
                 <textarea
                   rows={2}
