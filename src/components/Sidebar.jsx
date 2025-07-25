@@ -98,12 +98,7 @@ const Sidebar = () => {
           >
             Wallet
           </NavLink>
-          <NavLink
-            to="/dashboard/availability"
-            className={({ isActive }) => (isActive ? activeClass : normalClass)}
-          >
-            Availability
-          </NavLink>
+        
           <NavLink
             to="/dashboard/security"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}

@@ -36,7 +36,7 @@ const Clients = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Client Management</h2>
+      <h2 className="text-2xl font-semibold mb-6">Client Management</h2>
 
       <div className="overflow-x-auto rounded-lg shadow">
         <table className="min-w-full divide-y divide-gray-200 bg-white">
@@ -62,31 +62,33 @@ const Clients = () => {
                   )}
                 </td>
                 <td className="px-4 py-3">{client.feedback}</td>
-                <td className="px-4 py-3 flex flex-wrap gap-2">
-                  <button
-                    onClick={() => handleDeactivate(client.id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                  >
-                    Deactivate
-                  </button>
-                  <button
-                    onClick={() => handleExport(client.id)}
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
-                  >
-                    Export
-                  </button>
-                  <button
-                    onClick={() => handleFlag(client.id)}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
-                  >
-                    Flag
-                  </button>
-                  <button
-                    onClick={() => handleRemind(client.id)}
-                    className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded"
-                  >
-                    Remind
-                  </button>
+                <td className="px-4 py-3">
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => handleDeactivate(client.id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                    >
+                      Deactivate
+                    </button>
+                    <button
+                      onClick={() => handleExport(client.id)}
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
+                    >
+                      Export
+                    </button>
+                    <button
+                      onClick={() => handleFlag(client.id)}
+                      className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
+                    >
+                      Flag
+                    </button>
+                    <button
+                      onClick={() => handleRemind(client.id)}
+                      className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded"
+                    >
+                      Remind
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

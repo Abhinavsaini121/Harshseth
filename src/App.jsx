@@ -11,7 +11,6 @@
   import Security from "./pages/Security/Security";
   import Wallet from "./pages/Wallet/Wallet";
   import Sessions from "./pages/Sessions/Sessions";
-  import Availability from "./pages/Availability/Availability";
   import Faq from "./pages/FAQ/Faq";
   import Login from "./pages/Login";
   import Admin from "./pages/Admin/Admin";
@@ -37,7 +36,6 @@
             <Route path="security" element={<Security />} />
             <Route path="wallet" element={<Wallet />} />
             <Route path="sessions" element={<Sessions />} />
-            <Route path="availability" element={<Availability />} />
             <Route path="faq" element={<Faq />} />
             <Route path="admin" element={<Admin />} />
           </Route>
