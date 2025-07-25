@@ -47,6 +47,7 @@ const Sidebar = () => {
         <nav className="flex flex-col space-y-2">
           <NavLink
             to="/dashboard"
+            end 
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
           >
             Dashboard
@@ -67,20 +68,20 @@ const Sidebar = () => {
 
           {managementOpen && (
             <div className="ml-4 space-y-1">
-              <NavLink to="/therapists" className={normalClass}>
+              <NavLink to="/dashboard/therapists" className={normalClass}>
                 Therapists
               </NavLink>
-              <NavLink to="/listeners" className={normalClass}>
+              <NavLink to="/dashboard/listeners" className={normalClass}>
                 Listeners
               </NavLink>
-              <NavLink to="/clients" className={normalClass}>
+              <NavLink to="/dashboard/clients" className={normalClass}>
                 Clients
               </NavLink>
             </div>
           )}
 
           <NavLink
-            to="/sessions"
+            to="/dashboard/sessions"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
           >
             Sessions
@@ -92,32 +93,32 @@ const Sidebar = () => {
             Feedback
           </NavLink> */}
           <NavLink
-            to="/wallet"
+            to="/dashboard/wallet"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
           >
             Wallet
           </NavLink>
           <NavLink
-            to="/availability"
+            to="/dashboard/availability"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
           >
             Availability
           </NavLink>
           <NavLink
-            to="/security"
+            to="/dashboard/security"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
           >
             Security
           </NavLink>
           <NavLink
-            to="/admin"
+            to="/dashboard/admin"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
           >
             Admin
           </NavLink>
 
           <NavLink
-            to="/faq"
+            to="/dashboard/faq"
             className={({ isActive }) => (isActive ? activeClass : normalClass)}
           >
             F&Q
