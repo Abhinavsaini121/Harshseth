@@ -42,35 +42,24 @@ const Listeners = () => {
     );
   };
 
-  const approveOnboarding = (id) => {
-    alert(`Listener ${id} approved`);
-  };
-
-  const rejectOnboarding = (id) => {
-    alert(`Listener ${id} rejected`);
-  };
-
-  const resetCredentials = (id) => {
-    alert(`Reset credentials for Listener ${id}`);
-  };
-
-  const viewPerformance = (id) => {
-    alert(`View performance of Listener ${id}`);
-  };
+  const approveOnboarding = (id) => alert(`Listener ${id} approved`);
+  const rejectOnboarding = (id) => alert(`Listener ${id} rejected`);
+  const resetCredentials = (id) => alert(`Reset credentials for Listener ${id}`);
+  const viewPerformance = (id) => alert(`View performance of Listener ${id}`);
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">🎧 Listener Management</h1>
-      <div className="grid gap-6">
+    <div className="p-6 bg-gray-50 min-h-screen">
+      <h1 className="text-2xl font-semibold mb-6">Listener Management</h1>
+      <div className="grid md:grid-cols-2 gap-6">
         {listeners.map((listener) => (
           <div
             key={listener.id}
-            className="bg-white shadow-md rounded-2xl p-6 border hover:shadow-lg transition-all"
+            className="bg-white rounded-2xl p-6 shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)] transition-shadow"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-4">
               <div>
                 <h2 className="text-xl font-semibold text-gray-800">
-                  {listener.name}{" "}
+                  {listener.name}
                   <span
                     className={`ml-2 px-2 py-1 text-sm rounded-full ${
                       listener.status === "active"
@@ -81,39 +70,38 @@ const Listeners = () => {
                     {listener.status}
                   </span>
                 </h2>
-                <p className="text-gray-500 text-sm mt-1">
-                  Experience: {listener.experience || "N/A"}
-                </p>
-                <p className="text-gray-500 text-sm">Last Login: {listener.lastLogin}</p>
-                <p className="text-gray-500 text-sm">Sessions: {listener.sessionHistory}</p>
-                <p className="text-gray-500 text-sm">Avg. Duration: {listener.avgDuration}</p>
-                <p className="text-gray-500 text-sm mt-1">
-                  <span className="font-semibold text-gray-600">Availability:</span>{" "}
+                <p className="text-sm text-gray-500 mt-1">Experience: {listener.experience}</p>
+                <p className="text-sm text-gray-500">Last Login: {listener.lastLogin}</p>
+                <p className="text-sm text-gray-500">Sessions: {listener.sessionHistory}</p>
+                <p className="text-sm text-gray-500">Avg. Duration: {listener.avgDuration}</p>
+                <p className="text-sm text-gray-500 mt-1">
+                  <span className="font-medium text-gray-600">Availability:</span>{" "}
                   {listener.slots.join(", ")}
                 </p>
               </div>
-              <div className="flex flex-col gap-2">
+
+              <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={() => approveOnboarding(listener.id)}
-                  className="flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200"
+                  className="flex items-center gap-2 justify-center bg-blue-100 text-blue-700 py-1.5 rounded-lg hover:bg-blue-200 transition"
                 >
                   <FaCheckCircle /> Approve
                 </button>
                 <button
                   onClick={() => rejectOnboarding(listener.id)}
-                  className="flex items-center gap-2 bg-yellow-100 text-yellow-700 px-3 py-1 rounded hover:bg-yellow-200"
+                  className="flex items-center gap-2 justify-center bg-yellow-100 text-yellow-700 py-1.5 rounded-lg hover:bg-yellow-200 transition"
                 >
                   <FaTimesCircle /> Reject
                 </button>
                 <button
                   onClick={() => viewPerformance(listener.id)}
-                  className="flex items-center gap-2 bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200"
+                  className="flex items-center gap-2 justify-center bg-purple-100 text-purple-700 py-1.5 rounded-lg hover:bg-purple-200 transition"
                 >
                   <FiEye /> Performance
                 </button>
                 <button
                   onClick={() => toggleStatus(listener.id)}
-                  className="flex items-center gap-2 bg-gray-100 text-gray-700 px-3 py-1 rounded hover:bg-gray-200"
+                  className="flex items-center gap-2 justify-center bg-gray-100 text-gray-700 py-1.5 rounded-lg hover:bg-gray-200 transition"
                 >
                   {listener.status === "active" ? (
                     <>
@@ -127,9 +115,9 @@ const Listeners = () => {
                 </button>
                 <button
                   onClick={() => resetCredentials(listener.id)}
-                  className="flex items-center gap-2 bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200"
+                  className="flex items-center gap-2 justify-center bg-red-100 text-red-700 py-1.5 rounded-lg hover:bg-red-200 transition col-span-2"
                 >
-                  <MdSettingsBackupRestore /> Reset
+                  <MdSettingsBackupRestore /> Reset Credentials
                 </button>
               </div>
             </div>
