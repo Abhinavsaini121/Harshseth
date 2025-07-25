@@ -1,136 +1,106 @@
 import React from "react";
+import { CalendarDays, MoreVertical } from "lucide-react";
 
-const users = [
+const therapists = [
   {
-    name: "Nento Misaein",
-    role: "Gyootbin",
-    status: "23 Due",
-    timeAgo: "1 min ago",
-    nav1: "2 - 4",
-    nav2: "2.29",
-    date: "22/10",
-    img: "https://randomuser.me/api/portraits/men/10.jpg",
+    name: "Dr. Anjali Sharma",
+    status: "active",
+    specialty: "Anxiety",
+    lastLogin: "2 hours ago",
+    sessions: { daily: 3, weekly: 12, monthly: 40 },
+    avgDuration: "45 mins",
+    rating: 4.7,
   },
   {
-    name: "Cleonco Melaaed",
-    role: "Efibday",
-    status: "TEacisen",
-    timeAgo: "25 min ago",
-    nav1: "3 - 0",
-    nav2: "4.29",
-    date: "2/10",
-    img: "https://randomuser.me/api/portraits/men/15.jpg",
-  },
-  {
-    name: "Seentin Mmsiaby",
-    role: "Eaborstzion",
-    status: "20 Dew",
-    timeAgo: "13 min ago",
-    nav1: "2 - 0",
-    nav2: "4.29",
-    date: "12/10",
-    img: "https://randomuser.me/api/portraits/women/16.jpg",
-  },
-  {
-    name: "Meana Ext Alra",
-    role: "QOT",
-    status: "91 Oewr",
-    timeAgo: "14 min ago",
-    nav1: "3 - 4",
-    nav2: "4.20",
-    date: "22/24",
-    img: "https://randomuser.me/api/portraits/women/12.jpg",
-  },
-  {
-    name: "Ked ati HZ01420",
-    role: "NSI?",
-    status: "Phedfon",
-    timeAgo: "16 min ago",
-    nav1: "6 - 6",
-    nav2: "21.20",
-    date: "22.89",
-    img: "https://randomuser.me/api/portraits/men/35.jpg",
+    name: "Dr. Mohit Mehra",
+    status: "inactive",
+    specialty: "Couples Therapy",
+    lastLogin: "5 days ago",
+    sessions: { daily: 0, weekly: 0, monthly: 5 },
+    avgDuration: "50 mins",
+    rating: 4.2,
   },
 ];
 
-export default function AdminPanel() {
+const TherapistManagement = () => {
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <div className="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-md flex flex-col md:flex-row gap-6">
-        {/* Left Table */}
-        <div className="flex-1">
-          <h2 className="text-2xl font-bold mb-4">Admin Panel</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full table-auto">
-              <thead>
-                <tr className="text-left text-sm font-semibold text-gray-500">
-                  <th className="py-2">Name</th>
-                  <th>Status</th>
-                  <th>Role</th>
-                  <th>Time</th>
-                  <th>Nav 1</th>
-                  <th>Nav 2</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((u, idx) => (
-                  <tr key={idx} className="border-b text-sm">
-                    <td className="flex items-center gap-3 py-3">
-                      <img src={u.img} alt={u.name} className="w-8 h-8 rounded-full" />
-                      <span>{u.name}</span>
-                    </td>
-                    <td className="text-green-600">{u.status}</td>
-                    <td>{u.role}</td>
-                    <td>{u.timeAgo}</td>
-                    <td>{u.nav1}</td>
-                    <td>{u.nav2}</td>
-                    <td>{u.date}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <div className="p-6">
+      <h2 className="text-2xl font-bold mb-4">Therapist Management</h2>
 
-        {/* Right Sidebar */}
-        <div className="w-full md:w-1/3">
-          <h3 className="text-xl font-bold mb-4">Accaithing</h3>
+      {/* Filters */}
+      <div className="flex flex-wrap gap-4 mb-6">
+        <input
+          type="text"
+          placeholder="Search Therapist..."
+          className="border px-3 py-2 rounded-md w-60"
+        />
+        <select className="border px-3 py-2 rounded-md">
+          <option>Status: All</option>
+          <option>Active</option>
+          <option>Inactive</option>
+        </select>
+        <select className="border px-3 py-2 rounded-md">
+          <option>Specialty</option>
+          <option>Anxiety</option>
+          <option>Couples Therapy</option>
+        </select>
+      </div>
 
-          {/* Calendar */}
-          <div className="bg-gray-100 rounded-lg p-4 mb-4">
-            <p className="text-sm font-semibold mb-2">PLOOFSCIFLE</p>
-            <div className="grid grid-cols-7 gap-1 text-xs text-center text-gray-700">
-              {[...Array(30)].map((_, i) => (
-                <div
-                  key={i}
-                  className={`p-1 rounded ${
-                    i === 16 ? "bg-blue-500 text-white" : "hover:bg-blue-100"
-                  }`}
-                >
-                  {i + 1}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex justify-between mb-4">
-            <button className="bg-blue-500 text-white px-4 py-1 rounded">Honlware</button>
-            <button className="bg-gray-300 px-3 py-1 rounded">Pinet & Matsce</button>
-          </div>
-
-          {/* Actions */}
-          <div>
-            <p className="text-sm font-semibold mb-2">Actions</p>
-            <div className="space-y-2 text-sm">
-              <div className="bg-white p-2 rounded shadow-sm border">🛠️ Fames Roton DQtt</div>
-              <div className="bg-white p-2 rounded shadow-sm border">🎁 Brikea Aulinenwolfe</div>
-              <div className="bg-white p-2 rounded shadow-sm border">📂 Sto pille dibsvolian</div>
-            </div>
-          </div>
-        </div>
+      {/* Therapist Table */}
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white shadow rounded-lg">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="px-4 py-3 text-left">Therapist</th>
+              <th className="px-4 py-3 text-left">Status</th>
+              <th className="px-4 py-3 text-left">Specialty</th>
+              <th className="px-4 py-3 text-left">Last Login</th>
+              <th className="px-4 py-3 text-left">Sessions</th>
+              <th className="px-4 py-3 text-left">Avg. Duration</th>
+              <th className="px-4 py-3 text-left">Rating</th>
+              <th className="px-4 py-3 text-left">Availability</th>
+              <th className="px-4 py-3 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {therapists.map((therapist, index) => (
+              <tr key={index} className="border-t hover:bg-gray-50">
+                <td className="px-4 py-3">{therapist.name}</td>
+                <td className="px-4 py-3">
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      therapist.status === "active"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-red-100 text-red-700"
+                    }`}
+                  >
+                    {therapist.status}
+                  </span>
+                </td>
+                <td className="px-4 py-3">{therapist.specialty}</td>
+                <td className="px-4 py-3">{therapist.lastLogin}</td>
+                <td className="px-4 py-3">
+                  D:{therapist.sessions.daily} / W:{therapist.sessions.weekly} / M:{therapist.sessions.monthly}
+                </td>
+                <td className="px-4 py-3">{therapist.avgDuration}</td>
+                <td className="px-4 py-3">⭐ {therapist.rating}</td>
+                <td className="px-4 py-3">
+                  <button className="flex items-center text-sm text-blue-600 hover:underline">
+                    <CalendarDays className="w-4 h-4 mr-1" /> View
+                  </button>
+                </td>
+                <td className="px-4 py-3">
+                  <button className="p-1 hover:bg-gray-100 rounded-full">
+                    <MoreVertical className="w-4 h-4" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
-}
+};
+
+export default Therapist;
