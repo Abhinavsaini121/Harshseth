@@ -118,6 +118,15 @@ const Sidebar = () => {
           >
             F&Q
           </NavLink>
+          <NavLink to="/dashboard/contact"
+           className={({isActive}) => (isActive ? activeClass : normalClass)}>Contact
+           </NavLink>
+          <NavLink to="/dashboard/Terms" 
+          className={({isActive}) => (isActive ? activeClass : normalClass)}>Terms & Services
+          </NavLink>
+          <NavLink to="/dashboard/privacy" 
+          className={({isActive}) => (isActive ? activeClass : normalClass)}>Privecy
+          </NavLink>
         </nav>
       </aside>
     </>

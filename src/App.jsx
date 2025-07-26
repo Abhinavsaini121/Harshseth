@@ -14,10 +14,13 @@
   import Faq from "./pages/FAQ/Faq";
   import Login from "./pages/Login";
   import Admin from "./pages/Admin/Admin";
+  import Contact from "./pages/Contact/Contact";
+  import Terms from "./pages/Terms/Terms";
 
   // Toast
   import { ToastContainer } from "react-toastify";
   import "react-toastify/dist/ReactToastify.css";
+  import Privecy from "./pages/Privecy/Privecy";
 
   function App() {
     return (
@@ -38,6 +41,9 @@
             <Route path="sessions" element={<Sessions />} />
             <Route path="faq" element={<Faq />} />
             <Route path="admin" element={<Admin />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="terms" element={<Terms />} />
+            <Route path="privacy" element={<Privecy />} />
           </Route>
         </Routes>
 
