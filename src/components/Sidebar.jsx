@@ -125,7 +125,7 @@ const Sidebar = () => {
           className={({isActive}) => (isActive ? activeClass : normalClass)}>Terms & Services
           </NavLink>
           <NavLink to="/dashboard/privacy" 
-          className={({isActive}) => (isActive ? activeClass : normalClass)}>Privecy
+          className={({isActive}) => (isActive ? activeClass : normalClass)}>Privacy
           </NavLink>
         </nav>
       </aside>
